@@ -1,24 +1,25 @@
-import context from './modules/core/context.js';
-import { attachMessageListeners, setupDialogueClickHandler } from './modules/input/inputHandlers.js';
-import { createIntroScreen } from './modules/ui/introScreenManager.js';
-import { initHintSystem, showAnswerInput } from './modules/dialogue/answerHandler.js';
-import { getCombinedDialogue, findLastImage } from './modules/dialogue/dialogueManager.js';
-import { setVh } from './modules/ui/viewportUtils.js';
-import { autoUpdateSkipButton, updateSkipButton } from './modules/ui/control/skipButtonController.js';
-import { showPopup, showNotification } from './modules/ui/popup/popupHandler.js';
-import { downloadSave } from './modules/save/saveManager.js';
-import { showDialogue } from './modules/dialogue/showDialogue.js';
+import { attachMessageListeners, setupDialogueClickHandler } from '../input/inputHandlers.js';
+import { createIntroScreen } from '../ui/introScreenManager.js';
+import { initHintSystem, showAnswerInput } from '../dialogue/answerHandler.js';
+import { getCombinedDialogue, findLastImage } from '../dialogue/dialogueManager.js';
+import { setVh } from '../ui/viewportUtils.js';
+import { autoUpdateSkipButton, updateSkipButton } from '../ui/control/skipButtonController.js';
+import { showPopup, showNotification } from '../ui/popup/popupHandler.js';
+import { downloadSave } from '../save/saveManager.js';
+import { showDialogue } from '../dialogue/showDialogue.js';
 
-const currentDialogue = getCombinedDialogue();
-context.currentDialogue = currentDialogue;
+export default function initGameApp(context) {
 
-const { image: lastImage, index: lastImageIndex } = findLastImage(currentDialogue, context.indexRef.value);
+  const currentDialogue = getCombinedDialogue();
+  context.currentDialogue = currentDialogue;
 
-window.addEventListener('resize', setVh);
-window.addEventListener('load', setVh);
+  const { image: lastImage, index: lastImageIndex } = findLastImage(currentDialogue, context.indexRef.value);
 
-// =====================================
-// 5. 최초 실행
+  window.addEventListener('resize', setVh);
+  window.addEventListener('load', setVh);
+
+  // =====================================
+  // 5. 최초 실행
 // =====================================
 function startGame() {
   document.getElementById("main-start-screen").style.display = "none";
@@ -486,6 +487,8 @@ context.saveBtn.onclick = (e) => {
   console.log('▶️ attachMessageListeners 호출 완료');
   console.log('▶️ initHintSystem 호출 직전');
   console.log('▶️ initHintSystem 호출 완료');
-  setupDialogueClickHandler(context); 
+  setupDialogueClickHandler(context);
 });
+
+}
 
