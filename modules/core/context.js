@@ -44,13 +44,14 @@ const context = {
   saveLoaded: false,
   isRestored: false,
   hintSystemInitialized: false,
+  _currentDialogue: null,
 
   // currentDialogue → getter/setter로만 관리
   get currentDialogue() {
-    return window.currentDialogue;
+    return this._currentDialogue;
   },
   set currentDialogue(val) {
-    window.currentDialogue = val;
+    this._currentDialogue = val;
   },
 
   // 기능 함수
