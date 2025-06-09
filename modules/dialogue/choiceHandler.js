@@ -44,7 +44,7 @@ export function attachChoiceListener(container, context, showDialogue) {
       ...branch,
       ...rest
     ];
-    window.currentDialogue = updated;
+    context.currentDialogue = updated;
     context.indexRef.value++;
 
     let idx = context.indexRef.value;
