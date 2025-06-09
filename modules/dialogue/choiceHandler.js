@@ -1,6 +1,7 @@
 import { autoUpdateSkipButton } from '../ui/control/skipButtonController.js';
+import { DEBUG } from '../util/debug.js';
 export function renderChoiceButtons(choices, container, context) {
-  console.log("🟡 선택지 생성 시작", choices);
+  if (DEBUG) console.log("🟡 선택지 생성 시작", choices);
   container.innerHTML = '';
 
   choices.forEach(choice => {

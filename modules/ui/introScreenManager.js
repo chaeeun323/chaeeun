@@ -4,6 +4,7 @@ import { updateLevelBar } from './levelBarManager.js';
 import { scrollToBottom } from '../kakao/kakaoMessageManager.js';
 import { initHintSystem } from '../dialogue/answerHandler.js';
 import { attachMessageListeners } from '../input/inputHandlers.js';
+import { DEBUG } from '../util/debug.js';
 
 export function createIntroScreen(startGameCallback, showDialogue, context) {
   const introScreen = document.createElement('div');
@@ -132,7 +133,7 @@ setTimeout(() => {
     if (!alreadyDrawn) {
       showDialogue(i, context);
     } else {
-      console.log("🔁 대사 중복 출력 방지됨:", first.text);
+      if (DEBUG) console.log("🔁 대사 중복 출력 방지됨:", first.text);
     }
 
     if (context.skipBtn) context.skipBtn.style.display = 'block';

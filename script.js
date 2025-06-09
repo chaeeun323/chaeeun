@@ -8,6 +8,7 @@ import { autoUpdateSkipButton, updateSkipButton } from './modules/ui/control/ski
 import { showPopup, showNotification } from './modules/ui/popup/popupHandler.js';
 import { downloadSave } from './modules/save/saveManager.js';
 import { showDialogue } from './modules/dialogue/showDialogue.js';
+import { DEBUG } from './modules/util/debug.js';
 
 const currentDialogue = getCombinedDialogue();
 context.currentDialogue = currentDialogue;
@@ -400,8 +401,8 @@ if (startScreen) {
 document.addEventListener('DOMContentLoaded', () => {
   context.autoUpdateSkipButton = autoUpdateSkipButton;
   context.saveBtn = document.getElementById('save-btn');
-  console.log('📢 DOMContentLoaded fired'); 
-  console.log('▶️ attachMessageListeners 호출 직전');
+  if (DEBUG) console.log('📢 DOMContentLoaded fired');
+  if (DEBUG) console.log('▶️ attachMessageListeners 호출 직전');
   context.gameWrapper = document.getElementById('game-wrapper');
   context.kakaoBox = document.getElementById('kakao-chat-box');
   context.choiceContainer = document.getElementById('choice-container');
@@ -483,9 +484,9 @@ context.saveBtn.onclick = (e) => {
     indexRef: context.indexRef
   });
 
-  console.log('▶️ attachMessageListeners 호출 완료');
-  console.log('▶️ initHintSystem 호출 직전');
-  console.log('▶️ initHintSystem 호출 완료');
+  if (DEBUG) console.log('▶️ attachMessageListeners 호출 완료');
+  if (DEBUG) console.log('▶️ initHintSystem 호출 직전');
+  if (DEBUG) console.log('▶️ initHintSystem 호출 완료');
   setupDialogueClickHandler(context); 
 });
 
